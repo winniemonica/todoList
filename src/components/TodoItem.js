@@ -1,9 +1,18 @@
 function TodoItem({ id, name, isComplete, onToggle, onDelete }) {
     return (
-        <ul className="list-group">
-            <li className={`list-group-item ${isComplete ? "text-decoration-line-through" : null}`} onClick={() => onToggle(id)}><input type={"checkbox"} checked={isComplete} />{name}</li>
-            <span onClick={() => onDelete(id)}>X</span>
+
+        <ul className="list-group ">
+            <div className=" d-flex border align-items-center justify-content-between p-2 mx-5 list-box" >
+                <div>
+                    <li className={`${isComplete ? "text-decoration-line-through" : null}`} onClick={() => onToggle(id)}>
+                        <input type={"checkbox"} className="mx-5" onChange={() => { }} checked={isComplete} />{name}
+                    </li>
+                </div>
+                <span className="" onClick={() => onDelete(id)}>X</span>
+            </div>
         </ul>
+
+
 
     )
 }
