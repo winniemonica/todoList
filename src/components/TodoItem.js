@@ -1,6 +1,6 @@
 function TodoItem({ id, name, isComplete, onToggle, onDelete }) {
+    console.log(id)
     return (
-
         <ul className="list-group ">
             <div className=" d-flex border align-items-center justify-content-between p-2 mx-5 list-box" >
                 <div>

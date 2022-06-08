@@ -9,7 +9,7 @@ function TodoList() {
         if (todo === "") {
             return
         }
-        setTodos([...todos, { id: todos.length, name: todo, isComplete: false }])
+        setTodos([...todos, { id: new Date().valueOf(), name: todo, isComplete: false }])
     }
 
     function toggleTodo(id) {
