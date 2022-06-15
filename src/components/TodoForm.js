@@ -1,17 +1,19 @@
 import { useState, useRef } from "react";
+import { useTodos } from "../useTodos";
 
-function TodoForm({ onSubmit }) {
+function TodoForm() {
+    const { addTodo } = useTodos()
     const input = useRef(null);
-    const [todo, setTodo] = useState("");
+    const [inputTodo, setInputTodo] = useState("");
 
     function handleChange(e) {
-        setTodo(e.target.value);
+        setInputTodo(e.target.value);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        onSubmit(todo);
-        setTodo("");
+        addTodo(inputTodo);
+        setInputTodo("");
     }
 
     return (
@@ -23,7 +25,7 @@ function TodoForm({ onSubmit }) {
                         ref={input}
                         className="form-control"
                         placeholder="Todo item..."
-                        value={todo}
+                        value={inputTodo}
                         onChange={handleChange}
                     />
                 </div>

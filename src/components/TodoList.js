@@ -1,33 +1,13 @@
-import { useTodoStorage } from "../useTodoStorage";
+import { useTodos } from "../useTodos";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
-    const [todos, setTodos] = useTodoStorage("todos");
+    const { todos } = useTodos()
 
-    function onSubmit(todo) {
-        if (todo === "") {
-            return;
-        }
-        setTodos([
-            ...todos,
-            { id: new Date().valueOf(), name: todo, isComplete: false },
-        ]);
-    }
-
-    function toggleTodo(id) {
-        const updateTodos = todos.map((todo) =>
-            todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
-        );
-        setTodos([...updateTodos]);
-    }
-    function deleteTodo(id) {
-        const updateTodos = todos.filter((todo) => todo.id !== id);
-        setTodos([...updateTodos]);
-    }
     const renderTodoItem = (items) =>
         items.map((d) => (
-            <TodoItem key={d.id} {...d} onToggle={toggleTodo} onDelete={deleteTodo} />
+            <TodoItem key={d.id} {...d} />
         ));
 
     const complete = renderTodoItem(todos.filter((d) => d.isComplete === false));
@@ -36,7 +16,7 @@ function TodoList() {
     return (
         <div>
             <h1 className="my-3">Todo List</h1>
-            <TodoForm onSubmit={onSubmit} />
+            <TodoForm />
             {complete}
             <div className="py-3"></div>
             {inComplete}

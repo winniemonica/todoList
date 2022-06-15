@@ -1,10 +1,13 @@
 import './App.css';
 import TodoList from './components/TodoList';
+import { TodosProvider } from './useTodos';
 
 function App() {
   return (
     <div className="App">
-      <TodoList />
+      <TodosProvider>
+        <TodoList />
+      </TodosProvider>
     </div>
   );
 }

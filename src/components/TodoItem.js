@@ -1,11 +1,14 @@
-function TodoItem({ id, name, isComplete, onToggle, onDelete }) {
+import { useTodos } from "../useTodos";
+
+function TodoItem({ id, name, isComplete }) {
+    const { toggleTodo, deleteTodo } = useTodos()
     return (
         <ul className="list-group ">
             <div className=" d-flex border align-items-center justify-content-between p-2 mx-5 list-box">
                 <div>
                     <li
                         className={`${isComplete ? "text-decoration-line-through" : null}`}
-                        onClick={() => onToggle(id)}
+                        onClick={() => toggleTodo(id)}
                     >
                         <input
                             type={"checkbox"}
@@ -16,7 +19,7 @@ function TodoItem({ id, name, isComplete, onToggle, onDelete }) {
                         {name}
                     </li>
                 </div>
-                <span className="" onClick={() => onDelete(id)}>
+                <span className="" onClick={() => deleteTodo(id)}>
                     X
                 </span>
             </div>
